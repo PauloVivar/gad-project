@@ -1,7 +1,7 @@
 //import React from 'react'
 import Layout from '../../../Components/Layout'
-//import TableComplete from '../../../Components/Table/TableComplete'
-import TableDynamic from '../../../Components/Table/TableDynamic'
+//import TableComplete from '../../../Components/Tables/TableComplete'
+import TableDynamic from '../../../Components/Tables/TableDynamic'
 import ModalForm from '../../../Components/Forms/ModalForm'
 
 function Users() {

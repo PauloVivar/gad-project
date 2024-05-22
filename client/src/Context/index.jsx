@@ -53,14 +53,23 @@ export const GlobalProvider = ({ children }) =>{
       .then(response => response.json())
       .then(data => setItems(data)),
 
-    // fetch('https://fakestoreapi.com/users')
-    fetch('https://api.escuelajs.co/api/v1/users')
+    //fetch('https://fakestoreapi.com/users')
+    //fetch('https://api.escuelajs.co/api/v1/users')
+    //fetch('http://localhost:3000/api/v1/users')
+      //.then(response => response.json())
+      //.then(data => setUsers(data))
+    
+    //fetch('https://api.escuelajs.co/api/v1/users')
+    fetch('http://localhost:3000/api/v1/customers')
       .then(response => response.json())
-      .then(data => setUsers(data))
+      .then(data => setCustomers(data))
   }, [])
 
   //users, setUsers
   const [users, setUsers] = useState(null)
+
+  //customers, setCustomers
+  const [customers, setCustomers] = useState(null)
 
   return(
     <GlobalContext.Provider value={{
@@ -72,7 +81,9 @@ export const GlobalProvider = ({ children }) =>{
       items,
       setItems,
       users,
-      setUsers
+      setUsers,
+      customers,
+      setCustomers
     }}>
       { children }
     </GlobalContext.Provider>
