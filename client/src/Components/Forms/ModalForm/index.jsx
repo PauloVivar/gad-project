@@ -1,11 +1,11 @@
 
 //import React from 'react';
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, DatePicker, Input, RadioGroup, Radio, cn} from '@nextui-org/react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, DatePicker, Input, RadioGroup, Radio, cn } from '@nextui-org/react';
 //Icons
-import { EnvelopeIcon, LockClosedIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
+import { EnvelopeIcon, LockClosedIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 
 export const CustomRadio = (props) => {
-  const {...otherProps} = props;
+  const { ...otherProps } = props;
   return (
     <Radio
       {...otherProps}
@@ -22,15 +22,15 @@ export const CustomRadio = (props) => {
 };
 
 function ModalForm() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
       <div className='pb-4'>Formulario Usuarios</div>
 
       <Button onPress={onOpen} color='primary'>Create User</Button>
-      <Modal 
-        isOpen={isOpen} 
+      <Modal
+        isOpen={isOpen}
         onOpenChange={onOpenChange}
         placement='top'
       >
@@ -61,7 +61,7 @@ function ModalForm() {
                 <Input
                   autoFocus
                   endContent={
-                    <EnvelopeIcon className='size-6 text-2xl text-default-400 pointer-events-none flex-shrink-0'/>
+                    <EnvelopeIcon className='size-6 text-2xl text-default-400 pointer-events-none flex-shrink-0' />
                   }
                   label='Email'
                   placeholder='Ingrese su email'
@@ -85,7 +85,7 @@ function ModalForm() {
                   variant='bordered'
                 />
                 <DatePicker
-                  label='Birth date' 
+                  label='Birth date'
                   className='w-full'
                   variant='bordered'
                 />
@@ -143,4 +143,4 @@ function ModalForm() {
   );
 }
 
-export default ModalForm
+export default ModalForm;

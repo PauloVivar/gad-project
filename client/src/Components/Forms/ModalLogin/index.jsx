@@ -1,61 +1,61 @@
 
-//import React from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link} from "@nextui-org/react";
-import { EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/solid'
+//import React from 'react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link } from '@nextui-org/react';
+import { EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 
 function ModalLogin() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
       <div className='pb-4'>ModalLogin</div>
-      <Button onPress={onOpen} color="primary">Create User</Button>
-      <Modal 
-        isOpen={isOpen} 
+      <Button onPress={onOpen} color='primary'>Create User</Button>
+      <Modal
+        isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placement="top-center"
+        placement='top-center'
       >
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
+              <ModalHeader className='flex flex-col gap-1'>Log in</ModalHeader>
               <ModalBody>
                 <Input
                   autoFocus
                   endContent={
-                    <EnvelopeIcon className="size-6 text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                    <EnvelopeIcon className='size-6 text-2xl text-default-400 pointer-events-none flex-shrink-0' />
                   }
-                  label="Email"
-                  placeholder="Enter your email"
-                  variant="bordered"
+                  label='Email'
+                  placeholder='Enter your email'
+                  variant='bordered'
                 />
                 <Input
                   endContent={
-                    <LockClosedIcon className="size-6 text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+                    <LockClosedIcon className='size-6 text-2xl text-default-400 pointer-events-none flex-shrink-0' />
                   }
-                  label="Password"
-                  placeholder="Enter your password"
-                  type="password"
-                  variant="bordered"
+                  label='Password'
+                  placeholder='Enter your password'
+                  type='password'
+                  variant='bordered'
                 />
-                <div className="flex py-2 px-1 justify-between">
+                <div className='flex py-2 px-1 justify-between'>
                   <Checkbox
                     classNames={{
-                      label: "text-small",
+                      label: 'text-small',
                     }}
                   >
                     Remember me
                   </Checkbox>
-                  <Link color="primary" href="#" size="sm">
+                  <Link color='primary' href='#' size='sm'>
                     Forgot password?
                   </Link>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
+                <Button color='danger' variant='flat' onPress={onClose}>
                   Close
                 </Button>
-                <Button color="primary" onPress={onClose}>
+                <Button color='primary' onPress={onClose}>
                   Sign in
                 </Button>
               </ModalFooter>
@@ -67,4 +67,4 @@ function ModalLogin() {
   );
 }
 
-export default ModalLogin
+export default ModalLogin;

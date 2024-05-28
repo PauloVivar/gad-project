@@ -1,13 +1,10 @@
-import Layout from "../../Components/Layout"
+import Layout from '../../Components/Layout';
 function News() {
-
   return (
     <Layout>
-      <div>
-        News
-      </div>
+      <div>News</div>
     </Layout>
-  )
+  );
 }
 
-export default News
+export default News;

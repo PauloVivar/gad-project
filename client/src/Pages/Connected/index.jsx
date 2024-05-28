@@ -1,14 +1,11 @@
-
-import Layout from '../../Components/Layout'
+import Layout from '../../Components/Layout';
 
 function Connected() {
   return (
     <Layout>
-      <div>
-        Conectado
-      </div>
+      <div>Conectado</div>
     </Layout>
-  )
+  );
 }
 
-export default Connected
+export default Connected;

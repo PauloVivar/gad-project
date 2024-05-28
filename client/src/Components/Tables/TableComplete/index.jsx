@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Table,
   TableHeader,
@@ -15,40 +15,40 @@ import {
   Chip,
   User,
   Pagination,
-} from "@nextui-org/react";
+} from '@nextui-org/react';
 
-import {PlusIcon} from "./PlusIcon";
-import {VerticalDotsIcon} from "./VerticalDotsIcon";
-import {SearchIcon} from "./SearchIcon";
-import {ChevronDownIcon} from "./ChevronDownIcon";
+import { PlusIcon } from './PlusIcon';
+import { VerticalDotsIcon } from './VerticalDotsIcon';
+import { SearchIcon } from './SearchIcon';
+import { ChevronDownIcon } from './ChevronDownIcon';
 
-import {columns, users, statusOptions} from "./data";
-import {capitalize} from "./utils";
+import { columns, users, statusOptions } from './data';
+import { capitalize } from './utils';
 
 const statusColorMap = {
-  active: "success",
-  paused: "danger",
-  vacation: "warning",
+  active: 'success',
+  paused: 'danger',
+  vacation: 'warning',
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "role", "status", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ['name', 'role', 'status', 'actions'];
 
 function TableComplete() {
-  const [filterValue, setFilterValue] = React.useState("");
+  const [filterValue, setFilterValue] = React.useState('');
   const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
   const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
-  const [statusFilter, setStatusFilter] = React.useState("all");
+  const [statusFilter, setStatusFilter] = React.useState('all');
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [sortDescriptor, setSortDescriptor] = React.useState({
-    column: "age",
-    direction: "ascending",
+    column: 'age',
+    direction: 'ascending',
   });
   const [page, setPage] = React.useState(1);
 
   const hasSearchFilter = Boolean(filterValue);
 
   const headerColumns = React.useMemo(() => {
-    if (visibleColumns === "all") return columns;
+    if (visibleColumns === 'all') return columns;
 
     return columns.filter((column) => Array.from(visibleColumns).includes(column.uid));
   }, [visibleColumns]);
@@ -61,7 +61,7 @@ function TableComplete() {
         user.name.toLowerCase().includes(filterValue.toLowerCase()),
       );
     }
-    if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
+    if (statusFilter !== 'all' && Array.from(statusFilter).length !== statusOptions.length) {
       filteredUsers = filteredUsers.filter((user) =>
         Array.from(statusFilter).includes(user.status),
       );
@@ -86,7 +86,7 @@ function TableComplete() {
       const second = b[sortDescriptor.column];
       const cmp = first < second ? -1 : first > second ? 1 : 0;
 
-      return sortDescriptor.direction === "descending" ? -cmp : cmp;
+      return sortDescriptor.direction === 'descending' ? -cmp : cmp;
     });
   }, [sortDescriptor, items]);
 
@@ -94,36 +94,36 @@ function TableComplete() {
     const cellValue = user[columnKey];
 
     switch (columnKey) {
-      case "name":
+      case 'name':
         return (
           <User
-            avatarProps={{radius: "lg", src: user.avatar}}
+            avatarProps={{ radius: 'lg', src: user.avatar }}
             description={user.email}
             name={cellValue}
           >
             {user.email}
           </User>
         );
-      case "role":
+      case 'role':
         return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-400">{user.team}</p>
+          <div className='flex flex-col'>
+            <p className='text-bold text-small capitalize'>{cellValue}</p>
+            <p className='text-bold text-tiny capitalize text-default-400'>{user.team}</p>
           </div>
         );
-      case "status":
+      case 'status':
         return (
-          <Chip className="capitalize" color={statusColorMap[user.status]} size="sm" variant="flat">
+          <Chip className='capitalize' color={statusColorMap[user.status]} size='sm' variant='flat'>
             {cellValue}
           </Chip>
         );
-      case "actions":
+      case 'actions':
         return (
-          <div className="relative flex justify-end items-center gap-2">
+          <div className='relative flex justify-end items-center gap-2'>
             <Dropdown>
               <DropdownTrigger>
-                <Button isIconOnly size="sm" variant="light">
-                  <VerticalDotsIcon className="text-default-300" />
+                <Button isIconOnly size='sm' variant='light'>
+                  <VerticalDotsIcon className='text-default-300' />
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
@@ -161,87 +161,87 @@ function TableComplete() {
       setFilterValue(value);
       setPage(1);
     } else {
-      setFilterValue("");
+      setFilterValue('');
     }
   }, []);
 
-  const onClear = React.useCallback(()=>{
-    setFilterValue("")
+  const onClear = React.useCallback(() => {
+    setFilterValue('')
     setPage(1)
-  },[])
+  }, []);
 
   const topContent = React.useMemo(() => {
     return (
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-between gap-3 items-end">
+      <div className='flex flex-col gap-4'>
+        <div className='flex justify-between gap-3 items-end'>
           <Input
             isClearable
-            className="w-full sm:max-w-[44%]"
-            placeholder="Busca por nombre..."
+            className='w-full sm:max-w-[44%]'
+            placeholder='Busca por nombre...'
             startContent={<SearchIcon />}
             value={filterValue}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
           />
-          <div className="flex gap-3">
+          <div className='flex gap-3'>
             <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+              <DropdownTrigger className='hidden sm:flex'>
+                <Button endContent={<ChevronDownIcon className='text-small' />} variant='flat'>
                   Status
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
                 disallowEmptySelection
-                aria-label="Table Columns"
+                aria-label='Table Columns'
                 closeOnSelect={false}
                 selectedKeys={statusFilter}
-                selectionMode="multiple"
+                selectionMode='multiple'
                 onSelectionChange={setStatusFilter}
               >
                 {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
+                  <DropdownItem key={status.uid} className='capitalize'>
                     {capitalize(status.name)}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
             <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button endContent={<ChevronDownIcon className="text-small" />} variant="flat">
+              <DropdownTrigger className='hidden sm:flex'>
+                <Button endContent={<ChevronDownIcon className='text-small' />} variant='flat'>
                   Columns
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
                 disallowEmptySelection
-                aria-label="Table Columns"
+                aria-label='Table Columns'
                 closeOnSelect={false}
                 selectedKeys={visibleColumns}
-                selectionMode="multiple"
+                selectionMode='multiple'
                 onSelectionChange={setVisibleColumns}
               >
                 {columns.map((column) => (
-                  <DropdownItem key={column.uid} className="capitalize">
+                  <DropdownItem key={column.uid} className='capitalize'>
                     {capitalize(column.name)}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
-            <Button color="primary" endContent={<PlusIcon />}>
+            <Button color='primary' endContent={<PlusIcon />}>
               Add New
             </Button>
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">Total {users.length} users</span>
-          <label className="flex items-center text-default-400 text-small">
+        <div className='flex justify-between items-center'>
+          <span className='text-default-400 text-small'>Total {users.length} users</span>
+          <label className='flex items-center text-default-400 text-small'>
             Rows per page:
             <select
-              className="bg-transparent outline-none text-default-400 text-small"
+              className='bg-transparent outline-none text-default-400 text-small'
               onChange={onRowsPerPageChange}
             >
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
+              <option value='5'>5</option>
+              <option value='10'>10</option>
+              <option value='15'>15</option>
             </select>
           </label>
         </div>
@@ -253,26 +253,26 @@ function TableComplete() {
 
   const bottomContent = React.useMemo(() => {
     return (
-      <div className="py-2 px-2 flex justify-between items-center">
-        <span className="w-[30%] text-small text-default-400">
-          {selectedKeys === "all"
-            ? "All items selected"
+      <div className='py-2 px-2 flex justify-between items-center'>
+        <span className='w-[30%] text-small text-default-400'>
+          {selectedKeys === 'all'
+            ? 'All items selected'
             : `${selectedKeys.size} of ${filteredItems.length} selected`}
         </span>
         <Pagination
           isCompact
           showControls
           showShadow
-          color="primary"
+          color='primary'
           page={page}
           total={pages}
           onChange={setPage}
         />
-        <div className="hidden sm:flex w-[30%] justify-end gap-2">
-          <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onPreviousPage}>
+        <div className='hidden sm:flex w-[30%] justify-end gap-2'>
+          <Button isDisabled={pages === 1} size='sm' variant='flat' onPress={onPreviousPage}>
             Previous
           </Button>
-          <Button isDisabled={pages === 1} size="sm" variant="flat" onPress={onNextPage}>
+          <Button isDisabled={pages === 1} size='sm' variant='flat' onPress={onNextPage}>
             Next
           </Button>
         </div>
@@ -287,18 +287,18 @@ function TableComplete() {
       <p className='pb-4'>TableComplete</p>
 
       <Table className='w-2/4'
-        aria-label="Example table with custom cells, pagination and sorting"
+        aria-label='Example table with custom cells, pagination and sorting'
         isHeaderSticky
         bottomContent={bottomContent}
-        bottomContentPlacement="outside"
+        bottomContentPlacement='outside'
         classNames={{
-          wrapper: "max-h-[382px]",
+          wrapper: 'max-h-[382px]',
         }}
         selectedKeys={selectedKeys}
-        selectionMode="multiple"
+        selectionMode='multiple'
         sortDescriptor={sortDescriptor}
         topContent={topContent}
-        topContentPlacement="outside"
+        topContentPlacement='outside'
         onSelectionChange={setSelectedKeys}
         onSortChange={setSortDescriptor}
       >
@@ -306,14 +306,14 @@ function TableComplete() {
           {(column) => (
             <TableColumn
               key={column.uid}
-              align={column.uid === "actions" ? "center" : "start"}
+              align={column.uid === 'actions' ? 'center' : 'start'}
               allowsSorting={column.sortable}
             >
               {column.name}
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody emptyContent={"No users found"} items={sortedItems}>
+        <TableBody emptyContent={'No users found'} items={sortedItems}>
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
@@ -325,4 +325,4 @@ function TableComplete() {
   );
 }
 
-export default TableComplete
+export default TableComplete;

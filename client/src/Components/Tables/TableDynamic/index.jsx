@@ -1,13 +1,13 @@
 
-//import React from 'react'
-import { useContext, useCallback } from 'react'
-import { GlobalContext } from '../../../Context'
+//import React from 'react';
+import { useContext, useCallback } from 'react';
+import { GlobalContext } from '../../../Context/GlobalContext';
 
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip} from '@nextui-org/react';
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip } from '@nextui-org/react';
 
-import {columns} from './data';
+import { columns } from './data';
 
-import { PencilSquareIcon, TrashIcon, EyeIcon } from '@heroicons/react/24/solid'
+import { PencilSquareIcon, TrashIcon, EyeIcon } from '@heroicons/react/24/solid';
 
 const statusColorMap = {
   activo: 'success',
@@ -18,16 +18,16 @@ const statusColorMap = {
 function TableDynamic() {
 
   const context = useContext(GlobalContext)
-  
+
   // ACTIONS data -> context.users/ context.customers
   const renderCell = useCallback((data, columnKey) => {
-    
+
     const cellValue = data[columnKey];
     switch (columnKey) {
       case 'name':
         return (
           <User
-            avatarProps={{radius: 'lg', src: data.user.avatar}}
+            avatarProps={{ radius: 'lg', src: data.user.avatar }}
             description={data.user.email}
             // name={cellValue}
             name={data.name + ' ' + data.lastName}
@@ -90,7 +90,7 @@ function TableDynamic() {
   return (
     <>
       <p className='pb-4'>TableDynamic</p>
-      
+
       {/* context.items?.map(item => (
         <CardInfo key={item.id} data={item} />
       )) */}
@@ -107,7 +107,7 @@ function TableDynamic() {
         <TableBody items={context.customers}>
           {(item) => (
             <TableRow key={item.id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+              {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
             </TableRow>
           )}
         </TableBody>
@@ -119,10 +119,10 @@ function TableDynamic() {
             </TableRow>
           )}
         </TableBody> */}
-        
+
       </Table>
-    </> 
+    </>
   )
 }
 
-export default TableDynamic
+export default TableDynamic;
