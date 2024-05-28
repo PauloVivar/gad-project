@@ -7,7 +7,8 @@ import { initializeLocalStorage } from '../../Context/initializeLocalStorage';
 import Home from '../Home';
 import News from '../News';
 import Connected from '../Connected';
-import Users from '../Admin/Users';
+import Admin from '../Admin';
+import Users from '../Users';
 import MyAccount from '../MyAccount';
 import SignIn from '../SignIn';
 import NotFound from '../NotFound';
@@ -51,7 +52,12 @@ const AppRoutes = () => {
     },
     { path: '/news', element: <News /> },
     { path: '/connected', element: <Connected /> },
-    { path: '/admin/users', element: <Users /> },
+    { 
+      path: '/admin', element: <Admin />,
+      children: [
+        { path: 'users', element: <Users /> },
+      ],
+    },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/sign-in', element: <SignIn /> },
     { path: '/*', element: <NotFound /> },

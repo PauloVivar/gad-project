@@ -7,8 +7,10 @@ import { HomeModernIcon, NewspaperIcon, IdentificationIcon } from '@heroicons/re
 import { MagnifyingGlassIcon, MoonIcon, UserIcon } from '@heroicons/react/24/solid';
 
 const Navbar = () => {
-  const context = useContext(GlobalContext); //nos traemos el contexto
+  //Nos traemos el contexto
+  const context = useContext(GlobalContext); 
   const activeStyle = 'text-black/70 underline underline-offset-4';
+  //const slide = 'slide';
 
   //Inicio Dark-Mode
   const [theme, setTheme] = useState(() => {
@@ -53,6 +55,34 @@ const Navbar = () => {
     context.setSignOut(true);
   };
 
+  //Functions for navToggle 
+  // {
+  //   let icon1 = document.getElementById("icon1");
+  //   let menu1 = document.getElementById("menu1");
+
+  //   const showMenu1 = (flag) => {
+  //     if (flag) {
+  //       icon1.classList.toggle("rotate-180");
+  //       menu1.classList.toggle("hidden");
+  //     }
+  //   };
+
+  //   let Main = document.getElementById("Main");
+  //   let open = document.getElementById("open");
+  //   let close = document.getElementById("close");
+
+  //   const showNav = (flag) => {
+  //     if (flag) {
+  //       Main.classList.toggle("-translate-x-full");
+  //       Main.classList.toggle("translate-x-0");
+  //       open.classList.toggle("hidden");
+  //       close.classList.toggle("hidden");
+  //     }
+  //   };
+
+  // }
+  
+
   //Function SignOut
   const renderView = () => {
     if (hasUserAnAccount && !isUserSignOut) {
@@ -68,8 +98,48 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to='/admin/users'
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+              to='/admin'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)} 
+            >
+
+            {/* <NavLink to='/admin'> */}
+
+              {/* <div id="Main" className=" bg-red-500 xl:rounded-r transform xl:translate-x-0 ease-in-out transition duration-500 flex h-full w-full sm:w-64 flex-col">
+                
+                <div className=" bg-blue-600 flex flex-col items-center w-full absolute">
+                  <button onClick={()=> showMenu1(true)} className="flex items-center w-full" >
+                      Admin
+                    <svg id='icon1' className='transform' width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <path d='M18 15L12 9L6 15' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round' />
+                    </svg>
+                  </button>
+
+                  <div id="menu1" className="flex justify-start  flex-col w-full md:w-auto items-start pb-1 ">
+                    <button className="flex justify-start items-center space-x-2 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
+                      <svg className="fill-stroke" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 6H7C6.46957 6 5.96086 6.21071 5.58579 6.58579C5.21071 6.96086 5 7.46957 5 8V17C5 17.5304 5.21071 18.0391 5.58579 18.4142C5.96086 18.7893 6.46957 19 7 19H16C16.5304 19 17.0391 18.7893 17.4142 18.4142C17.7893 18.0391 18 17.5304 18 17V14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M17 10C18.6569 10 20 8.65685 20 7C20 5.34314 18.6569 4 17 4C15.3431 4 14 5.34314 14 7C14 8.65685 15.3431 10 17 10Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      <p className="text-base leading-4  ">Users</p>
+                    </button>
+                  </div>
+                </div>
+
+              </div> */}
+
+              {/* {({ isActive, isTransitioning }) => (
+                <span className={
+                  isActive ? activeStyle : undefined && isTransitioning ? slide : ""
+                }>
+                  Tasks
+                </span>,
+                <span className={
+                  isActive ? activeStyle : undefined && isTransitioning ? slide : ""
+                }>
+                  Tasks2
+                </span>
+              )} */}
+              
               Admin
             </NavLink>
           </li>
@@ -104,9 +174,8 @@ const Navbar = () => {
       {/* NAV DESKTOP */}
       {/* <nav className='flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white'> */}
       <nav
-        className='hidden justify-between items-center fixed z-10 top-0 w-full h-16 py-5 px-8 text-sm font-medium bg-gray-100   
-        text-primary shadow-md border border-slate-200 
-        lg:flex
+        className='hidden justify-between items-center fixed z-10 top-0 w-full h-16 py-5 px-8 text-xs font-medium 
+        bg-gray-100 text-primary shadow-md border border-slate-200 lg:flex
         dark:bg-gray-700 dark:text-white dark:border-slate-600'>
         <ul className='flex items-center gap-3'>
           <li className='font-bold text-lg pr-3'>
