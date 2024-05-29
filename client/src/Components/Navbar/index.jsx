@@ -126,22 +126,10 @@ const Navbar = () => {
                 </div>
 
               </div> */}
-
-              {/* {({ isActive, isTransitioning }) => (
-                <span className={
-                  isActive ? activeStyle : undefined && isTransitioning ? slide : ""
-                }>
-                  Tasks
-                </span>,
-                <span className={
-                  isActive ? activeStyle : undefined && isTransitioning ? slide : ""
-                }>
-                  Tasks2
-                </span>
-              )} */}
               
               Admin
             </NavLink>
+
           </li>
           <li>
             <NavLink
@@ -204,42 +192,49 @@ const Navbar = () => {
             <a
               href='/#recommendations'
               className='hover:text-black/70'>
-              Recomentados
+                Recomentados
             </a>
           </li>
           <li>
             <a
               href='/#outstanding_news'
               className='hover:text-black/70'>
-              Resumen Noticias
+                Resumen Noticias
             </a>
           </li>
           <li>
             <a
               href='/#faqs'
               className='hover:text-black/70'>
-              FAQS
+                FAQS
             </a>
           </li>
           <li>
             <a
               href='/#about_us'
               className='hover:text-black/70'>
-              Sobre Nosotros
+                Sobre Nosotros
             </a>
           </li>
           <li>
             <NavLink
               to='/news'
               className={({ isActive }) => (isActive ? activeStyle : undefined)}>
-              Noticias
+                Noticias
             </NavLink>
           </li>
           <li>
             <NavLink
-              to='/connected'
+              to={`/connected`}
               className={({ isActive }) => (isActive ? activeStyle : undefined)}>
-              Conectado
+                Conectado
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/users'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                Users
             </NavLink>
           </li>
         </ul>

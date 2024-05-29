@@ -51,13 +51,13 @@ const AppRoutes = () => {
         ),
     },
     { path: '/news', element: <News /> },
-    { path: '/connected', element: <Connected /> },
-    { 
-      path: '/admin', element: <Admin />,
+    { path: '/connected', element: <Connected />,
       children: [
         { path: 'users', element: <Users /> },
       ],
     },
+    { path: '/users', element: <Users /> },
+    { path: '/admin', element: <Admin /> },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/sign-in', element: <SignIn /> },
     { path: '/*', element: <NotFound /> },

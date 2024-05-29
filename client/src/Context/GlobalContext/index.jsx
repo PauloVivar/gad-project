@@ -39,6 +39,9 @@ const GlobalProvider = ({ children }) => {
   //customers, setCustomers
   const [customers, setCustomers] = useState(null);
 
+  //navbar
+  //const [childrenNavbar, setChildrenNavbar] = useState(null);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -53,6 +56,9 @@ const GlobalProvider = ({ children }) => {
         setUsers,
         customers,
         setCustomers,
+
+        //childrenNavbar,
+        //setChildrenNavbar
       }}>
       {children}
     </GlobalContext.Provider>

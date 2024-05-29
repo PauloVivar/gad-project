@@ -1,6 +1,18 @@
-
 //import React from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, DatePicker, Input, RadioGroup, Radio, cn } from '@nextui-org/react';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  DatePicker,
+  Input,
+  RadioGroup,
+  Radio,
+  cn,
+} from '@nextui-org/react';
 //Icons
 import { EnvelopeIcon, LockClosedIcon, PencilSquareIcon } from '@heroicons/react/24/solid';
 
@@ -15,9 +27,7 @@ export const CustomRadio = (props) => {
           'flex-row-reverse  cursor-pointer rounded-lg gap-1 border-2 border-transparent',
           'data-[selected=true]:border-primary'
         ),
-      }}
-    >
-    </Radio>
+      }}></Radio>
   );
 };
 
@@ -28,18 +38,20 @@ function ModalForm() {
     <>
       <div className='pb-4'>Formulario Usuarios</div>
 
-      <Button onPress={onOpen} color='primary'>Create User</Button>
+      <Button
+        onPress={onOpen}
+        color='primary'>
+        Create User
+      </Button>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placement='top'
-      >
+        placement='top'>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className='flex flex-col gap-1'>Create User</ModalHeader>
               <ModalBody>
-
                 <div className='flex justify-between gap-1'>
                   <Input
                     endContent={
@@ -89,12 +101,16 @@ function ModalForm() {
                   className='w-full'
                   variant='bordered'
                 />
-                <RadioGroup >
+                <RadioGroup>
                   <div className='flex justify-between gap-1'>
-                    <CustomRadio description='Seleccione genero' value='female'>
+                    <CustomRadio
+                      description='Seleccione genero'
+                      value='female'>
                       Mujer
                     </CustomRadio>
-                    <CustomRadio description='Seleccione genero' value='male'>
+                    <CustomRadio
+                      description='Seleccione genero'
+                      value='male'>
                       Hombre
                     </CustomRadio>
                   </div>
@@ -128,10 +144,15 @@ function ModalForm() {
               </ModalBody>
 
               <ModalFooter>
-                <Button color='danger' variant='flat' onPress={onClose}>
+                <Button
+                  color='danger'
+                  variant='flat'
+                  onPress={onClose}>
                   Close
                 </Button>
-                <Button color='primary' onPress={onClose}>
+                <Button
+                  color='primary'
+                  onPress={onClose}>
                   Create User
                 </Button>
               </ModalFooter>
