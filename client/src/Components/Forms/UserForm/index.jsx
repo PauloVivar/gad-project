@@ -1,4 +1,6 @@
 import React from 'react';
+//import { useContext } from 'react';
+//import { GlobalContext } from '../../../Context/GlobalContext';
 import {
   Tabs,
   Tab,
@@ -16,7 +18,24 @@ import { SelectorUI } from '../../UI/SelectorUI';
 import { civilStatus, disability, ethnicity } from './data';
 
 function UserForm() {
+  // const {
+  //   addCustomer
+  // } = useContext(GlobalContext);
+
   const [selected, setSelected] = React.useState('login');
+
+  //Estado local para capturar información ingresada en inputs
+  const [newCustomerValue, setNewCustomerValue] = React.useState('');
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    //addCustomer(newCustomerValue);
+    //setOpenModal(false);
+  };
+
+  const onChange = (event) => {
+    setNewCustomerValue(event.target.value);
+  };
 
   return (
     <div className='flex flex-col w-full'>
@@ -31,18 +50,22 @@ function UserForm() {
             <Tab
               key='naturalPerson'
               title='Persona Natural'>
-              <form className='flex flex-col gap-4'>
+              <form className='flex flex-col gap-4' onSubmit={ onSubmit }>
                 <h3 className='pt-2'>Información Básica</h3>
                 <div className='flex justify-between gap-3'>
                   <Input
                     isRequired
                     label='Nombres'
                     placeholder='Carlos Roman'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Apellidos'
                     placeholder='Vivar Redrovan'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
                 <div className='flex justify-between gap-3'>
@@ -50,15 +73,21 @@ function UserForm() {
                     isRequired
                     label='Cédula'
                     placeholder='0302000001'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Código Dactilar Cédula'
                     placeholder='V0006V0001'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <DatePicker
                     isRequired
                     label='Fecha de Nacimiento'
+                    //value={newCustomerValue}
+                    //onChange={onChange}
                   />
                 </div>
                 <div className='flex justify-between gap-3'>
@@ -97,16 +126,22 @@ function UserForm() {
                     isRequired
                     label='Calle Principal'
                     placeholder='Av. 16 de Abril'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Calle Secundaria'
-                    placeholder='Ingre su password'
+                    placeholder='Ingre calle secundaria'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
                 <Input
                   label='Referencia Domicilio'
                   placeholder='Parque Infantil'
+                  value={newCustomerValue}
+                  onChange={onChange}
                 />
 
                 <div className='flex justify-between gap-3'>
@@ -114,14 +149,20 @@ function UserForm() {
                     isRequired
                     label='Celular'
                     placeholder='0998888888'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Teléfono'
                     placeholder='072244444'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Teléfono Referencia'
                     placeholder='0997777777'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -131,12 +172,16 @@ function UserForm() {
                     label='Email'
                     placeholder='romanv@mail.com'
                     type='email'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Confirmar Email'
                     placeholder='Confirme su email'
                     type='email'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -146,12 +191,16 @@ function UserForm() {
                     label='Password'
                     placeholder='Ingrese su password'
                     type='password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Confirmar Password'
                     placeholder='Confirme su password'
                     type='password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -160,11 +209,15 @@ function UserForm() {
                     isRequired
                     label='Cédula Escaneada'
                     placeholder='Selecionar Archivo'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Código de Validación'
                     placeholder='123456'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -181,7 +234,7 @@ function UserForm() {
                   <Button
                     fullWidth
                     color='primary'>
-                    Login
+                    Registrarte
                   </Button>
                 </div>
               </form>
@@ -197,11 +250,15 @@ function UserForm() {
                     isRequired
                     label='RUC'
                     placeholder='0170000000001'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Razón Social'
                     placeholder='EMPRESA CÍA. LTDA.'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
                 <div className='flex justify-between gap-3'>
@@ -209,10 +266,14 @@ function UserForm() {
                     isRequired
                     label='Nombre Comercial'
                     placeholder='EMPRESA 123'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <DatePicker
                     isRequired
                     label='Fecha Inicio Actividades'
+                    //value={newCustomerValue}
+                    //onChange={onChange}
                   />
                 </div>
 
@@ -223,16 +284,22 @@ function UserForm() {
                     isRequired
                     label='Calle Principal'
                     placeholder='Av. 16 de Abril'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Calle Secundaria'
                     placeholder='Ingre su password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
                 <Input
                   label='Referencia Domicilio'
                   placeholder='Parque Infantil'
+                  value={newCustomerValue}
+                  onChange={onChange}
                 />
 
                 <div className='flex justify-between gap-3'>
@@ -240,14 +307,20 @@ function UserForm() {
                     isRequired
                     label='Celular'
                     placeholder='0998888888'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Teléfono'
                     placeholder='072244444'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Teléfono Referencia'
                     placeholder='0997777777'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -257,12 +330,16 @@ function UserForm() {
                     label='Email'
                     placeholder='romanv@mail.com'
                     type='email'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Confirmar Email'
                     placeholder='Confirme su email'
                     type='email'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -272,12 +349,16 @@ function UserForm() {
                     label='Password'
                     placeholder='Ingrese su password'
                     type='password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Confirmar Password'
                     placeholder='Confirme su password'
                     type='password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -286,11 +367,15 @@ function UserForm() {
                     isRequired
                     label='Documento Adjunto'
                     placeholder='Adjuntar un PDF con RUC, Representante Legal y Cédula Representante Legal'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Código de Validación'
                     placeholder='123456'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -307,7 +392,7 @@ function UserForm() {
                   <Button
                     fullWidth
                     color='primary'>
-                    Login
+                    Registrarte
                   </Button>
                 </div>
               </form>
@@ -323,11 +408,15 @@ function UserForm() {
                     isRequired
                     label='Nombres'
                     placeholder='Carlos Roman'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Apellidos'
                     placeholder='Vivar Redrovan'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
                 <div className='flex justify-between gap-3'>
@@ -335,10 +424,14 @@ function UserForm() {
                     isRequired
                     label='Pasaporte'
                     placeholder='AB123456'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <DatePicker
                     isRequired
                     label='Fecha de Nacimiento'
+                    //value={newCustomerValue}
+                    //onChange={onChange}
                   />
                 </div>
 
@@ -378,16 +471,22 @@ function UserForm() {
                     isRequired
                     label='Calle Principal'
                     placeholder='Av. 16 de Abril'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Calle Secundaria'
                     placeholder='Ingre su password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
                 <Input
                   label='Referencia Domicilio'
                   placeholder='Parque Infantil'
+                  value={newCustomerValue}
+                  onChange={onChange}
                 />
 
                 <div className='flex justify-between gap-3'>
@@ -395,14 +494,20 @@ function UserForm() {
                     isRequired
                     label='Celular'
                     placeholder='0998888888'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Teléfono'
                     placeholder='072244444'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     label='Teléfono Referencia'
                     placeholder='0997777777'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -412,12 +517,16 @@ function UserForm() {
                     label='Email'
                     placeholder='romanv@mail.com'
                     type='email'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Confirmar Email'
                     placeholder='Confirme su email'
                     type='email'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -427,12 +536,16 @@ function UserForm() {
                     label='Password'
                     placeholder='Ingrese su password'
                     type='password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Confirmar Password'
                     placeholder='Confirme su password'
                     type='password'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -441,11 +554,15 @@ function UserForm() {
                     isRequired
                     label='Pasaporte Escaneado'
                     placeholder='Selecionar Archivo'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                   <Input
                     isRequired
                     label='Código de Validación'
                     placeholder='123456'
+                    value={newCustomerValue}
+                    onChange={onChange}
                   />
                 </div>
 
@@ -461,8 +578,9 @@ function UserForm() {
                 <div className='flex gap-3 justify-end'>
                   <Button
                     fullWidth
-                    color='primary'>
-                    Login
+                    color='primary'
+                    type='submit'>
+                    Registrarte
                   </Button>
                 </div>
               </form>

@@ -30,7 +30,16 @@ const GlobalProvider = ({ children }) => {
       //fetch('https://api.escuelajs.co/api/v1/users')
       fetch('http://localhost:3000/api/v1/customers')
         .then((response) => response.json())
-        .then((data) => setCustomers(data));
+        .then((data) => setCustomers(data))
+        
+      //   ,
+      
+      // fetch('http://localhost:3000/api/v1/customers',{
+      //   method:'POST',
+      //   body:JSON.stringify(customers)
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => setCustomers(data))
   }, []);
 
   //users, setUsers
@@ -39,8 +48,46 @@ const GlobalProvider = ({ children }) => {
   //customers, setCustomers
   const [customers, setCustomers] = useState(null);
 
+
+
   //navbar
   //const [childrenNavbar, setChildrenNavbar] = useState(null);
+
+  //Función para persistir los datos en localStorage
+  // const saveCustomers = (newItem) =>{
+  //   localStorage.setItemCustomer(itemName, JSON.stringify(newItem));
+  //   setItemCustomer(newItem);
+  // }
+
+  //Función con la lógica para Agregar un nuevo usuarios
+  // const addCustomer = (text) => {
+  //   const newCustomers = [...customers];
+  //   newCustomers.push({
+  //     text,
+  //     completed: false,
+  //   });
+  //   saveCustomers(newCustomers);
+  // }
+
+  //Función con la lógica para Actualizar usuarios existentes
+  // const updateCustomer = (text) => {
+  //   const newCustomers = [...customers];
+  //   const index = newCustomers.findIndex(
+  //     (task) => task.text === text
+  //   );
+  //   newCustomers[index].completed = true;
+  //   saveCustomers(newCustomers);
+  // }
+
+  //Función con la lógica para eliminar usuarios existentes
+  // const deleteCustomer = (text) => {
+  //   const newCustomers = [...customers];
+  //   const index = newCustomers.findIndex(
+  //     (task) => task.text === text
+  //   );
+  //   newCustomers.splice(index, 1);
+  //   saveCustomers(newCustomers);
+  // }
 
   return (
     <GlobalContext.Provider
@@ -57,8 +104,11 @@ const GlobalProvider = ({ children }) => {
         customers,
         setCustomers,
 
-        //childrenNavbar,
-        //setChildrenNavbar
+        //test
+        //addCustomer,
+        //updateCustomer,
+        //deleteCustomer
+
       }}>
       {children}
     </GlobalContext.Provider>

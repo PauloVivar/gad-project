@@ -1,9 +1,18 @@
-
 //import React from 'react';
 import { useContext, useCallback } from 'react';
 import { GlobalContext } from '../../../Context/GlobalContext';
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, User, Chip, Tooltip } from '@nextui-org/react';
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  User,
+  Chip,
+  Tooltip,
+} from '@nextui-org/react';
 
 import { columns } from './data';
 
@@ -16,12 +25,10 @@ const statusColorMap = {
 };
 
 function TableDynamic() {
-
-  const context = useContext(GlobalContext)
+  const context = useContext(GlobalContext);
 
   // ACTIONS data -> context.users/ context.customers
   const renderCell = useCallback((data, columnKey) => {
-
     const cellValue = data[columnKey];
     switch (columnKey) {
       case 'name':
@@ -30,8 +37,7 @@ function TableDynamic() {
             avatarProps={{ radius: 'lg', src: data.user.avatar }}
             description={data.user.email}
             // name={cellValue}
-            name={data.name + ' ' + data.lastName}
-          >
+            name={data.name + ' ' + data.lastName}>
             {data.user.email}
           </User>
         );
@@ -57,7 +63,11 @@ function TableDynamic() {
         );
       case 'status':
         return (
-          <Chip className='capitalize' color={statusColorMap[data.user.status]} size='sm' variant='flat'>
+          <Chip
+            className='capitalize'
+            color={statusColorMap[data.user.status]}
+            size='sm'
+            variant='flat'>
             {data.user.status}
           </Chip>
         );
@@ -74,7 +84,9 @@ function TableDynamic() {
                 <PencilSquareIcon />
               </span>
             </Tooltip>
-            <Tooltip color='danger' content='Delete user'>
+            <Tooltip
+              color='danger'
+              content='Delete user'>
               <span className='size-4 text-lg text-danger cursor-pointer active:opacity-50'>
                 <TrashIcon />
               </span>
@@ -95,10 +107,14 @@ function TableDynamic() {
         <CardInfo key={item.id} data={item} />
       )) */}
 
-      <Table className='w-3/4' aria-label='Example table with dynamic content'>
+      <Table
+        className='w-3/4'
+        aria-label='Example table with dynamic content'>
         <TableHeader columns={columns}>
           {(column) => (
-            <TableColumn key={column.uid} align={column.uid === 'actions' ? 'center' : 'start'}>
+            <TableColumn
+              key={column.uid}
+              align={column.uid === 'actions' ? 'center' : 'start'}>
               {column.name}
             </TableColumn>
           )}
@@ -119,10 +135,9 @@ function TableDynamic() {
             </TableRow>
           )}
         </TableBody> */}
-
       </Table>
     </>
-  )
+  );
 }
 
 export default TableDynamic;
