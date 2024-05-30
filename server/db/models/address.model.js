@@ -9,13 +9,36 @@ const AddressSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
+  country: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    defaultValue: 'Ecuador',
+  },
+  province: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    defaultValue: 'Cañar',
+  },
   city: {
     allowNull: false,
     type: DataTypes.STRING,
+    defaultValue: 'Azogues',
   },
-  street: {
+  parish: {
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  primaryStreet: {
     allowNull: false,
     type: DataTypes.STRING,
+  },
+  secondaryStreet: {
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  reference: {
+    allowNull: true,
+    type: DataTypes.TEXT,
   },
   number: {
     allowNull: true,

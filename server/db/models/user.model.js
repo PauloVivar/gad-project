@@ -2,8 +2,6 @@ const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const USER_TABLE = 'users';
 
-//hola test
-
 const UserSchema = {
   id: {
     allowNull: false,
@@ -20,15 +18,23 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  team: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    defaultValue: 'person',
+  },
   role: {
     allowNull: false,
     type: DataTypes.STRING,
     defaultValue: 'customer',
   },
-  team: {
+  cellphone: {
     allowNull: false,
     type: DataTypes.STRING,
-    defaultValue: 'person',
+  },
+  phone: {
+    allowNull: true,
+    type: DataTypes.STRING,
   },
   avatar:{
     allowNull: true,
@@ -40,11 +46,17 @@ const UserSchema = {
     defaultValue: 'activo',
   },
   createdAt: {
-    field: 'create_at',
+    field: 'created_at',
     allowNull: false,
     type: DataTypes.DATE,
     defaultValue: Sequelize.NOW,
-  }
+  },
+  updatedAt: {
+    field: 'updated_at',
+    allowNull: false,
+    type: DataTypes.DATE,
+    defaultValue: Sequelize.NOW,
+  },
 }
 
 class User extends Model {

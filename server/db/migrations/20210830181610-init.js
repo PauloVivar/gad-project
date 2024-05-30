@@ -29,15 +29,23 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
       },
+      team: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+        defaultValue: 'person',
+      },
       role: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
         defaultValue: 'customer',
       },
-      team: {
+      cellphone: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
-        defaultValue: 'person',
+      },
+      phone: {
+        allowNull: true,
+        type: Sequelize.DataTypes.STRING,
       },
       avatar:{
         allowNull: true,
@@ -49,7 +57,13 @@ module.exports = {
         defaultValue: 'activo',
       },
       createdAt: {
-        field: 'create_at',
+        field: 'created_at',
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        defaultValue: Sequelize.NOW,
+      },
+      updatedAt: {
+        field: 'updated_at',
         allowNull: false,
         type: Sequelize.DataTypes.DATE,
         defaultValue: Sequelize.NOW,
@@ -63,13 +77,36 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER,
       },
+      country: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+        defaultValue: 'Ecuador',
+      },
+      province: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+        defaultValue: 'Cañar',
+      },
       city: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
+        defaultValue: 'Azogues',
       },
-      street: {
+      parish: {
+        allowNull: true,
+        type: Sequelize.DataTypes.STRING,
+      },
+      primaryStreet: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
+      },
+      secondaryStreet: {
+        allowNull: true,
+        type: Sequelize.DataTypes.STRING,
+      },
+      reference: {
+        allowNull: true,
+        type: Sequelize.DataTypes.TEXT,
       },
       number: {
         allowNull: true,
@@ -108,10 +145,15 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
       },
       ci: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DataTypes.STRING,
       },
-      cc: {
+      fingerprintCode: {
+        field: 'fingerprint_code',
+        allowNull: true,
+        type: Sequelize.DataTypes.STRING,
+      },
+      passport: {
         allowNull: true,
         type: Sequelize.DataTypes.STRING,
       },
@@ -123,8 +165,17 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
       },
-      phone: {
-        allowNull: true,
+      civilStatus: {
+        field: 'civil_status',
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      disability: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      ethnicity: {
+        allowNull: false,
         type: Sequelize.DataTypes.STRING,
       },
       createdAt: {

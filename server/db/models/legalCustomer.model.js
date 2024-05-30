@@ -12,48 +12,22 @@ const CustomerSchema =  {
     primaryKey: true,
     type: DataTypes.INTEGER,
   },
-  name: {
+  businessName: {
+    field: 'business_name',
     allowNull: false,
     type: DataTypes.STRING,
   },
-  lastName: {
-    field: 'last_name',
+  tradename: {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  ci: {
-    allowNull: true,
+  ruc: {
+    allowNull: false,
     type: DataTypes.STRING,
   },
-  fingerprintCode: {
-    field: 'fingerprint_code',
-    allowNull: true,
-    type: DataTypes.STRING,
-  },
-  passport: {
-    allowNull: true,
-    type: DataTypes.STRING,
-  },
-  birthdate: {
+  startedActivitiesDate: {
     allowNull: false,
     type: DataTypes.DATE,
-  },
-  gender: {
-    allowNull: false,
-    type: DataTypes.STRING,
-  },
-  civilStatus: {
-    field: 'civil_status',
-    allowNull: false,
-    type: DataTypes.STRING,
-  },
-  disability: {
-    allowNull: false,
-    type: DataTypes.STRING,
-  },
-  ethnicity: {
-    allowNull: false,
-    type: DataTypes.STRING,
   },
   createdAt: {
     field: 'created_at',
