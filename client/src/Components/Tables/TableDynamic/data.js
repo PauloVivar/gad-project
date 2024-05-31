@@ -7,10 +7,10 @@ const columns = [
   {name: 'PASSWORD', uid: 'password'},    // {name: 'PASSWORD', uid: 'user.password'},
   {name: 'CI', uid: 'ci'},
   {name: 'GENDER', uid: 'gender'},
-  {name: 'PHONE', uid: 'phone'},
-  {name: 'ROL', uid: 'role'},             // {name: 'ROL',      uid: 'user.rol'},
-  {name: 'ADDRESS', uid: 'address'},      // {name: 'ADDRESS',  uid: 'address.city'},
-  {name: 'STATUS', uid: 'status'},        // {name: 'STATUS',   uid: 'user.status'},
+  {name: 'CELLPHONE', uid: 'cellphone'},  // {name: 'CELLPHONE', uid: 'user.cellphone'},
+  {name: 'ROL', uid: 'role'},             // {name: 'ROL',       uid: 'user.rol'},
+  {name: 'ADDRESS', uid: 'address'},      // {name: 'ADDRESS',   uid: 'address.city'},
+  {name: 'STATUS', uid: 'status'},        // {name: 'STATUS',    uid: 'user.status'},
 
   {name: 'ACTIONS', uid: 'actions'},
 ];

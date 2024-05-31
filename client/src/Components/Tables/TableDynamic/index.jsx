@@ -58,7 +58,7 @@ function TableDynamic() {
         return (
           <div className='flex flex-col'>
             <p className='text-bold text-sm capitalize'>{data.address.city}</p>
-            <p className='text-bold text-sm capitalize text-default-400'>{data.address.street}</p>
+            <p className='text-bold text-sm capitalize text-default-400'>{data.address.primaryStreet}</p>
           </div>
         );
       case 'status':

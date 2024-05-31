@@ -19,6 +19,7 @@ const { createAddressSchema, updateAddressSchema } = require('./address.schema')
 const createCustomerSchema = Joi.object({
   name: name.required(),
   lastName: lastName.required(),
+  ci: ci,
   birthdate: birthdate.required(),
   gender: gender.required(),
   civilStatus: civilStatus.required(),
