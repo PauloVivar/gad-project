@@ -1,6 +1,6 @@
 import React from 'react';
-//import { useContext } from 'react';
-//import { GlobalContext } from '../../../Context/GlobalContext';
+import { useContext } from 'react';
+import { GlobalContext } from '../../../Context/GlobalContext';
 import {
   Tabs,
   Tab,
@@ -18,9 +18,9 @@ import { SelectorUI } from '../../UI/SelectorUI';
 import { civilStatus, disability, ethnicity } from './data';
 
 function UserForm() {
-  // const {
-  //   addCustomer
-  // } = useContext(GlobalContext);
+  const {
+    addCustomer
+  } = useContext(GlobalContext);
 
   const [selected, setSelected] = React.useState('login');
 
@@ -29,7 +29,7 @@ function UserForm() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    //addCustomer(newCustomerValue);
+    addCustomer(newCustomerValue);
     //setOpenModal(false);
   };
 
