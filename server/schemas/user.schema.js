@@ -3,24 +3,30 @@ const Joi = require('joi');
 const id = Joi.number().integer();
 const email = Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } });
 const password = Joi.string().min(5);
-const role = Joi.string().min(5);;
-const team = Joi.string().min(5);;
+const team = Joi.string().min(5);
+const role = Joi.string().min(5);
+const cellphone = Joi.string();
+const phone = Joi.string();
 const avatar = Joi.string();
 const status = Joi.string();
 
 const createUserSchema = Joi.object({
   email: email.required(),
   password: password.required(),
-  // role: role.required(),
+  cellphone: cellphone.required(),
+
   // team: team.required(),
+  // role: role.required(),
   //avatar: avatar.required(),
   //status: status.required(),
 });
 
 const updateUserSchema = Joi.object({
   email: email,
-  role: role,
   team: team,
+  role: role,
+  cellphone: cellphone,
+  phone: phone,
   avatar: avatar,
   status: status,
 });

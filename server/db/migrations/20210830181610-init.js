@@ -2,8 +2,8 @@
 
 const { USER_TABLE } = require('./../models/user.model');
 const { CUSTOMER_TABLE } = require('./../models/customer.model');
+const { LEGAL_CUSTOMER_TABLE } = require('./../models/legalCustomer.model');
 const { ADDRESS_TABLE } = require('./../models/address.model');
-
 const { CATEGORY_TABLE } = require('./../models/category.model');
 const { PUBLICATION_TABLE } = require('../models/publication.model');
 const { TAG_TABLE } = require('../models/tag.model');
@@ -177,6 +177,63 @@ module.exports = {
       ethnicity: {
         allowNull: false,
         type: Sequelize.DataTypes.STRING,
+      },
+      createdAt: {
+        field: 'created_at',
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
+        defaultValue: Sequelize.NOW,
+      },
+      userId: {
+        field: 'user_id',
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+        unique: true,
+        references: {
+          model: USER_TABLE,
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
+      addressId: {
+        field: 'address_id',
+        allowNull: false,
+        type: Sequelize.DataTypes.INTEGER,
+        unique: true,
+        references: {
+          model: ADDRESS_TABLE,
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
+    });
+
+    await queryInterface.createTable(LEGAL_CUSTOMER_TABLE, {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.DataTypes.INTEGER,
+      },
+      businessName: {
+        field: 'business_name',
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      tradename: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      ruc: {
+        allowNull: false,
+        type: Sequelize.DataTypes.STRING,
+      },
+      activityDate: {
+        field: 'activity_date',
+        allowNull: false,
+        type: Sequelize.DataTypes.DATE,
       },
       createdAt: {
         field: 'created_at',

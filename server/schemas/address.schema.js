@@ -13,7 +13,6 @@ const zipcode = Joi.string();
 const geolocation = Joi.string();
 
 const createAddressSchema = Joi.object({
-  city: city.required(),
   primaryStreet: primaryStreet.required(),
   // number: number.required(),
   // zipcode: zipcode.required(),

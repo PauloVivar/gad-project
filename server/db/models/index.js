@@ -1,6 +1,7 @@
 const { User, UserSchema } = require('./user.model');
 const { Address, AddressSchema } = require('./address.model');
 const { Customer, CustomerSchema } = require('./customer.model');
+const { LegalCustomer, LegalCustomerSchema } = require('./legalCustomer.model');
 
 const { Category, CategorySchema } = require('./category.model');
 const { Publication, PublicationSchema } = require('./publication.model');
@@ -12,6 +13,7 @@ function setupModels(sequelize) {
   User.init(UserSchema, User.config(sequelize));
   Address.init(AddressSchema, Address.config(sequelize));
   Customer.init(CustomerSchema, Customer.config(sequelize));
+  LegalCustomer.init(LegalCustomerSchema, LegalCustomer.config(sequelize));
 
   Category.init(CategorySchema, Category.config(sequelize));
   Publication.init(PublicationSchema, Publication.config(sequelize));
@@ -19,9 +21,11 @@ function setupModels(sequelize) {
   TagPublication.init(TagPublicationSchema, TagPublication.config(sequelize));
   Comment.init(CommentSchema, Comment.config(sequelize));
 
+  //asociaciones
   User.associate(sequelize.models);
   Address.associate(sequelize.models);
   Customer.associate(sequelize.models);
+  LegalCustomer.associate(sequelize.models);
 
   Category.associate(sequelize.models);
   Publication.associate(sequelize.models);

@@ -4,16 +4,14 @@ const id = Joi.number().integer();
 const name = Joi.string().min(3).max(30).label('First Name');
 const lastName = Joi.string().min(3).max(30).label('Last Name');
 const ci = Joi.string().min(9).max(10);
-const cc = Joi.string();
+const fingerprintCode = Joi.string();
+const passport = Joi.string();
 const birthdate = Joi.date();
-//const birthdate = Joi.date().format('YYYY-MM-DD').utc();
 const gender = Joi.string();
-const phone =  Joi.string();
-
-// const userId = Joi.number().integer();
-// const email = Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } });
-// const password = Joi.string().min(5);
-// const addressId = Joi.number().integer();
+const civilStatus = Joi.string();
+const disability = Joi.string();
+const ethnicity = Joi.string();
+//const birthdate = Joi.date().format('YYYY-MM-DD').utc();
 
 const { createUserSchema, updateUserSchema } = require('./user.schema');
 const { createAddressSchema, updateAddressSchema } = require('./address.schema');
@@ -21,10 +19,11 @@ const { createAddressSchema, updateAddressSchema } = require('./address.schema')
 const createCustomerSchema = Joi.object({
   name: name.required(),
   lastName: lastName.required(),
-  ci: ci.required(),
   birthdate: birthdate.required(),
   gender: gender.required(),
-  phone: phone.required(),
+  civilStatus: civilStatus.required(),
+  disability: disability.required(),
+  ethnicity: ethnicity.required(),
 
   //cc: cc.required(),
   // user: Joi.object({
@@ -39,10 +38,13 @@ const updateCustomerSchema = Joi.object({
   name,
   lastName,
   ci,
-  cc,
+  fingerprintCode,
+  passport,
   birthdate,
   gender,
-  phone,
+  civilStatus,
+  disability,
+  ethnicity,
   user: updateUserSchema,
   addressId: updateAddressSchema
 });

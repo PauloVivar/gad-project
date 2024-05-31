@@ -3,9 +3,9 @@ const { Model, DataTypes, Sequelize } = require('sequelize');
 const { USER_TABLE } = require('./user.model');
 const { ADDRESS_TABLE } = require('./address.model');
 
-const CUSTOMER_TABLE = 'customers';
+const LEGAL_CUSTOMER_TABLE = 'legalCustomers';
 
-const CustomerSchema =  {
+const LegalCustomerSchema =  {
   id: {
     allowNull: false,
     autoIncrement: true,
@@ -25,9 +25,10 @@ const CustomerSchema =  {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  startedActivitiesDate: {
+  activityDate: {
+    field: 'activity_date',
     allowNull: false,
-    type: DataTypes.DATE,
+    type: Sequelize.DataTypes.DATE,
   },
   createdAt: {
     field: 'created_at',
@@ -61,25 +62,25 @@ const CustomerSchema =  {
   },
 }
 
-class Customer extends Model {
+class LegalCustomer extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, {as: 'user'});
     this.belongsTo(models.Address, {as: 'address'});
     this.hasMany(models.Publication, {
       as: 'publication',
-      foreignKey: 'customerId'
+      foreignKey: 'legalCustomerId'
     });
   }
 
   static config(sequelize) {
     return {
       sequelize,
-      tableName: CUSTOMER_TABLE,
-      modelName: 'Customer',
+      tableName: LEGAL_CUSTOMER_TABLE,
+      modelName: 'LegalCustomer',
       timestamps: false
     }
   }
 }
 
-module.exports = { Customer, CustomerSchema, CUSTOMER_TABLE };
+module.exports = { LegalCustomer, LegalCustomerSchema, LEGAL_CUSTOMER_TABLE };
