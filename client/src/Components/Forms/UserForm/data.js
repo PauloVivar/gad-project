@@ -1,4 +1,9 @@
 //import React from 'react';
+const documentType = [
+  {key: 'ci', label: 'ci'},
+  {key: 'passport', label: 'passport'},
+];
+
 const gender = [
   {key: 'female', label: 'Femenino'},
   {key: 'male', label: 'Masculino'},
@@ -31,4 +36,4 @@ const ethnicity = [
   {key: 'waorani', label: 'Waorani'},
 ];
 
-export { gender, civilStatus, disability, ethnicity }
+export { documentType, gender, civilStatus, disability, ethnicity }

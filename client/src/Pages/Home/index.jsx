@@ -13,6 +13,7 @@ import '../App/App.css';
 
 function Home() {
   const context = useContext(GlobalContext);
+  //const items = context.apiItems.read();
 
   return (
     <Layout>

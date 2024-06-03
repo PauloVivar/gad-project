@@ -1,4 +1,7 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
+import { useFetch } from '../../api/useFetch';
+//import { fetchData } from '../../api/fetchData';
+
 import PropTypes from 'prop-types';
 
 const GlobalContext = createContext();
@@ -15,43 +18,14 @@ const GlobalProvider = ({ children }) => {
   const [signOut, setSignOut] = useState(false);
 
   //items, setItems
-  const [items, setItems] = useState(null);
+  const { items } = useFetch('https://fakestoreapi.com/products');
+  //const apiItems = fetchData('https://fakestoreapi.com/products');
 
-  useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((data) => setItems(data)),
-      //fetch('https://fakestoreapi.com/users')
-      //fetch('https://api.escuelajs.co/api/v1/users')
-      //fetch('http://localhost:3000/api/v1/users')
-      //.then(response => response.json())
-      //.then(data => setUsers(data))
-
-      //fetch('https://api.escuelajs.co/api/v1/users')
-      fetch('http://localhost:3000/api/v1/customers')
-        .then((response) => response.json())
-        .then((data) => setCustomers(data))
-        
-      //   ,
-      
-      // fetch('http://localhost:3000/api/v1/customers',{
-      //   method:'POST',
-      //   body:JSON.stringify(customers)
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => setCustomers(data))
-  }, []);
-
-  //users, setUsers
-  const [users, setUsers] = useState(null);
-
-  //customers, setCustomers
-  const [customers, setCustomers] = useState(null);
+  // customers, setCustomers
+  const { error, isLoading, customers } = useFetch('http://localhost:3000/api/v1/customers');
+  //const apiCustomers = fetchData('http://localhost:3000/api/v1/customers');
 
 
-
-  //navbar
-  //const [childrenNavbar, setChildrenNavbar] = useState(null);
 
   //Función para persistir los datos en localStorage
   // const saveCustomers = (newItem) =>{
@@ -98,11 +72,12 @@ const GlobalProvider = ({ children }) => {
         setSignOut,
 
         items,
-        setItems,
-        users,
-        setUsers,
         customers,
-        setCustomers,
+        error,
+        isLoading,
+
+        //apiCustomers,
+        //apiItems,
 
         //test
         //addCustomer,

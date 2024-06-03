@@ -12,6 +12,8 @@ import {
   User,
   Chip,
   Tooltip,
+  Spinner,
+  Code
 } from '@nextui-org/react';
 
 import { columns } from './data';
@@ -26,6 +28,11 @@ const statusColorMap = {
 
 function TableDynamic() {
   const context = useContext(GlobalContext);
+  //const customers = context.apiCustomers.read();
+  
+  // const {
+  //   loading,
+  // } = useContext(GlobalContext);
 
   // ACTIONS data -> context.users/ context.customers
   const renderCell = useCallback((data, columnKey) => {
@@ -107,6 +114,12 @@ function TableDynamic() {
         <CardInfo key={item.id} data={item} />
       )) */}
 
+      {/* { //context.error && 
+          <Code color='danger'>Error: {context.error}</Code> }
+          
+      { //context.loading && 
+          <CircularProgress label='Loading...' value={ context.loading } /> } */}
+
       <Table
         className='w-3/4'
         aria-label='Example table with dynamic content'>
@@ -120,7 +133,12 @@ function TableDynamic() {
           )}
         </TableHeader>
 
-        <TableBody items={context.customers}>
+        <TableBody
+          emptyContent={ <Code color='danger'>No hay filas para mostrar. {context.error}</Code> }
+          items={context.customers}
+          isLoading={context.isLoading}
+          loadingContent={ <Spinner label='Loading...' /> }
+        >
           {(item) => (
             <TableRow key={item.id}>
               {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
@@ -128,13 +146,21 @@ function TableDynamic() {
           )}
         </TableBody>
 
-        {/* <TableBody items={context.users}>
-          {(item) => (
-            <TableRow key={item.id}>
-            {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
-            </TableRow>
-          )}
-        </TableBody> */}
+        {/* 
+        <Suspense fallback={ <Spinner label='Loading...' /> }>
+          <TableBody
+            emptyContent={ <Code color='danger'>No hay filas para mostrar. {context.error}</Code> }
+            items={customers}
+            isLoading={context.isLoading}
+            loadingContent={ <Spinner label='Loading...' /> }
+          >
+            {(item) => (
+              <TableRow key={item.id}>
+                {(columnKey) => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+              </TableRow>
+            )}
+          </TableBody> 
+        </Suspense>*/}
       </Table>
     </>
   );
