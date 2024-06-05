@@ -1,15 +1,33 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useFetch } from '../../api/useFetch';
-//import { fetchData } from '../../api/fetchData';
+import { registerRequestUser } from '../../api/users';
 
 import PropTypes from 'prop-types';
 
 const GlobalContext = createContext();
 
+//My custom hook
+const useGlobal = () => {
+  const context = useContext(GlobalContext);
+  if(!context){
+    throw new Error('useGlobal must be used within an GlobalProvider');
+  }
+  return context;
+};
+
 const GlobalProvider = ({ children }) => {
   GlobalProvider.propTypes = {
     children: PropTypes.node.isRequired,
   };
+
+  //User
+  const [user, setUser] = useState(null);
+
+  const signUp = async (user) => {
+    const res = await registerRequestUser(user);
+    console.log(res.data);
+    setUser(res.data)
+  } 
 
   //My account
   const [account, setAccount] = useState({});
@@ -23,9 +41,8 @@ const GlobalProvider = ({ children }) => {
 
   // customers, setCustomers
   const { error, isLoading, customers } = useFetch('http://localhost:3000/api/v1/customers');
+
   //const apiCustomers = fetchData('http://localhost:3000/api/v1/customers');
-
-
 
   //Función para persistir los datos en localStorage
   // const saveCustomers = (newItem) =>{
@@ -66,6 +83,10 @@ const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        user,
+        setUser,
+        signUp,
+
         account,
         setAccount,
         signOut,
@@ -90,4 +111,4 @@ const GlobalProvider = ({ children }) => {
   );
 };
 
-export { GlobalContext, GlobalProvider };
+export { GlobalContext, GlobalProvider, useGlobal };

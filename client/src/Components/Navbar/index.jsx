@@ -101,9 +101,7 @@ const Navbar = () => {
               to='/admin'
               className={({ isActive }) => (isActive ? activeStyle : undefined)} 
             >
-
-            {/* <NavLink to='/admin'> */}
-
+              {/* <NavLink to='/admin'> */}
               {/* <div id="Main" className=" bg-red-500 xl:rounded-r transform xl:translate-x-0 ease-in-out transition duration-500 flex h-full w-full sm:w-64 flex-col">
                 
                 <div className=" bg-blue-600 flex flex-col items-center w-full absolute">
@@ -126,7 +124,6 @@ const Navbar = () => {
                 </div>
 
               </div> */}
-              
               Admin
             </NavLink>
 
@@ -139,6 +136,14 @@ const Navbar = () => {
               Sign out
             </NavLink>
           </li>
+          <li>
+          <NavLink
+            to='/login'
+            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+          >
+            Login
+          </NavLink>
+        </li>
         </>
       );
     } else {
@@ -232,9 +237,16 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to='/users'
+              to='/register-user'
               className={({ isActive }) => (isActive ? activeStyle : undefined)}>
                 Users
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/customers'
+              className={({ isActive }) => (isActive ? activeStyle : undefined)}>
+                Customers
             </NavLink>
           </li>
         </ul>

@@ -1,7 +1,8 @@
 import Layout from '../../Components/Layout';
+//import { CustomerForm } from '../../Components/Forms/CustomerForm';
 import { UserForm } from '../../Components/Forms/UserForm';
 
-function Users() {
+function RegisterUser() {
   return (
     <Layout>
       <div className='text-center '>
@@ -12,4 +13,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default RegisterUser;

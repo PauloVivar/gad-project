@@ -8,9 +8,11 @@ import Home from '../Home';
 import News from '../News';
 import Connected from '../Connected';
 import Admin from '../Admin';
-import Users from '../Users';
+import RegisterUser from '../RegisterUser';
+import Customers from '../Customers';
 import MyAccount from '../MyAccount';
 import SignIn from '../SignIn';
+import Login from '../Login';
 import NotFound from '../NotFound';
 
 //Components
@@ -53,13 +55,15 @@ const AppRoutes = () => {
     { path: '/news', element: <News /> },
     { path: '/connected', element: <Connected />,
       children: [
-        { path: 'users', element: <Users /> },
+        { path: 'register-user', element: <RegisterUser /> },
       ],
     },
-    { path: '/users', element: <Users /> },
+    { path: '/register-user', element: <RegisterUser /> },
+    { path: '/customers', element: <Customers /> },
     { path: '/admin', element: <Admin /> },
     { path: '/my-account', element: <MyAccount /> },
     { path: '/sign-in', element: <SignIn /> },
+    { path: '/login', element: <Login /> },
     { path: '/*', element: <NotFound /> },
   ]);
   return routes;

@@ -1,6 +1,16 @@
-
 //import React from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link } from '@nextui-org/react';
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+  Checkbox,
+  Input,
+  Link,
+} from '@nextui-org/react';
 import { EnvelopeIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 
 function ModalLogin() {
@@ -9,12 +19,15 @@ function ModalLogin() {
   return (
     <>
       <div className='pb-4'>ModalLogin</div>
-      <Button onPress={onOpen} color='primary'>Create User</Button>
+      <Button
+        onPress={onOpen}
+        color='primary'>
+        Create User
+      </Button>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        placement='top-center'
-      >
+        placement='top-center'>
         <ModalContent>
           {(onClose) => (
             <>
@@ -42,20 +55,27 @@ function ModalLogin() {
                   <Checkbox
                     classNames={{
                       label: 'text-small',
-                    }}
-                  >
+                    }}>
                     Remember me
                   </Checkbox>
-                  <Link color='primary' href='#' size='sm'>
+                  <Link
+                    color='primary'
+                    href='#'
+                    size='sm'>
                     Forgot password?
                   </Link>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color='danger' variant='flat' onPress={onClose}>
+                <Button
+                  color='danger'
+                  variant='flat'
+                  onPress={onClose}>
                   Close
                 </Button>
-                <Button color='primary' onPress={onClose}>
+                <Button
+                  color='primary'
+                  onPress={onClose}>
                   Sign in
                 </Button>
               </ModalFooter>
@@ -67,4 +87,4 @@ function ModalLogin() {
   );
 }
 
-export default ModalLogin;
+export { ModalLogin };
