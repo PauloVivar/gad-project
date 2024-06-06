@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 function useFetch(url) {
 
   //error, setError -> estado para validar si existe un error al cargar información.
-  const [error, setError] = useState(null);
+  const [isError, setIsError] = useState(null);
 
   //loading, setLoading -> estado para validar si sigue cargando información.
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +38,7 @@ function useFetch(url) {
           if(error.name === 'AbortError'){
             console.log('Respuesta cancelada');
           }else{
-            setError(error)
+            setIsError(error)
           }
         })
         .finally(() => setIsLoading(false))
@@ -59,10 +59,10 @@ function useFetch(url) {
   const handleCancelRequest = () =>{
     if (controller)
       controller.abort();
-      setError("Respuesta cancelada");
+      setIsError("Respuesta cancelada");
   }
 
-  return { error, isLoading, handleCancelRequest, items, customers }
+  return { isError, isLoading, handleCancelRequest, items, customers }
 
 }
 

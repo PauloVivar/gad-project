@@ -22,11 +22,20 @@ const GlobalProvider = ({ children }) => {
 
   //User
   const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [errors, setErrors] = useState('');
 
   const signUp = async (user) => {
-    const res = await registerRequestUser(user);
-    console.log(res.data);
-    setUser(res.data)
+    try {
+      const res = await registerRequestUser(user);
+      //console.log(res.data);
+      setUser(res.data);
+      setIsAuthenticated(true);
+
+    } catch (error) {
+      console.log(error.data);
+      setErrors(error.response.data);
+    }
   } 
 
   //My account
@@ -40,7 +49,7 @@ const GlobalProvider = ({ children }) => {
   //const apiItems = fetchData('https://fakestoreapi.com/products');
 
   // customers, setCustomers
-  const { error, isLoading, customers } = useFetch('http://localhost:3000/api/v1/customers');
+  const { isError, isLoading, customers } = useFetch('http://localhost:3000/api/v1/customers');
 
   //const apiCustomers = fetchData('http://localhost:3000/api/v1/customers');
 
@@ -86,6 +95,8 @@ const GlobalProvider = ({ children }) => {
         user,
         setUser,
         signUp,
+        isAuthenticated,
+        errors,
 
         account,
         setAccount,
@@ -94,7 +105,7 @@ const GlobalProvider = ({ children }) => {
 
         items,
         customers,
-        error,
+        isError,
         isLoading,
 
         //apiCustomers,

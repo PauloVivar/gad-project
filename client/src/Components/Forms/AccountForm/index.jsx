@@ -1,12 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useGlobal } from '../../../Context/GlobalContext';
+import { useNavigate } from 'react-router-dom';
+
 import { Tabs, Tab, Input, Link, Button, Card, CardBody } from '@nextui-org/react';
 
 function AccountForm() {
+  //Tab
   const [selected, setSelected] = useState('login');
+  //Form
+  const { register, handleSubmit } = useForm();
+  //GlobalContext
+  //const { signUp, isAuthenticated, errors } = useGlobal();
+  const { signUp, isAuthenticated } = useGlobal();
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    if(isAuthenticated) navigate('/admin');
+  },[isAuthenticated]);
+
+  const onSubmit = handleSubmit(async (values) => {
+    console.log(values);  //validar el estado
+    signUp(values);
+  });
 
   return (
     <div className='flex flex-col w-full'>
-      <Card className='max-w-full w-[340px] h-[400px]'>
+      <Card className='max-w-full w-[340px] h-[full]'>
         <CardBody className='overflow-hidden'>
           <Tabs
             fullWidth
@@ -17,21 +37,42 @@ function AccountForm() {
             <Tab
               key='login'
               title='Login'>
-              <form className='flex flex-col gap-4'>
+              {/* {
+                errors.map((error, i) => {
+                  <Code color="danger" className='p-2' key={i} >
+                    {error}
+                  </Code>
+                })
+              }  */}
+              <form
+                className='flex flex-col gap-4'
+                onSubmit={onSubmit}>
                 <Input
                   isRequired
                   label='Email'
                   placeholder='Enter your email'
                   type='email'
+                  variant='faded'
+                  {...register('email')}
                 />
                 <Input
                   isRequired
                   label='Password'
                   placeholder='Enter your password'
                   type='password'
+                  variant='faded'
+                  {...register('password')}
+                />
+                <Input
+                  isRequired
+                  label='Cellphone'
+                  placeholder='Cellphone'
+                  type='text'
+                  variant='faded'
+                  {...register('cellphone')}
                 />
                 <p className='text-center text-small'>
-                  Need to create an account?{' '}
+                  ¿Necesitas crear una cuenta?{' '}
                   <Link
                     size='sm'
                     onPress={() => setSelected('sign-up')}>
@@ -41,36 +82,54 @@ function AccountForm() {
                 <div className='flex gap-2 justify-end'>
                   <Button
                     fullWidth
+                    type='submit'
                     color='primary'>
                     Login
                   </Button>
                 </div>
               </form>
             </Tab>
+
             <Tab
               key='sign-up'
               title='Sign up'>
-              <form className='flex flex-col gap-4 h-[300px]'>
+              <form
+                className='flex flex-col gap-4 h-[360px]'
+                onSubmit={onSubmit}>
                 <Input
                   isRequired
                   label='Name'
                   placeholder='Enter your name'
-                  type='password'
+                  type='text'
+                  variant='faded'
+                  {...register('name')}
                 />
                 <Input
                   isRequired
                   label='Email'
                   placeholder='Enter your email'
                   type='email'
+                  variant='faded'
+                  {...register('email')}
                 />
                 <Input
                   isRequired
                   label='Password'
                   placeholder='Enter your password'
                   type='password'
+                  variant='faded'
+                  {...register('password')}
+                />
+                <Input
+                  isRequired
+                  label='Cellphone'
+                  placeholder='Cellphone'
+                  type='text'
+                  variant='faded'
+                  {...register('cellphone')}
                 />
                 <p className='text-center text-small'>
-                  Already have an account?{' '}
+                  ¿Ya tienes una cuenta?{' '}
                   <Link
                     size='sm'
                     onPress={() => setSelected('login')}>
@@ -80,6 +139,7 @@ function AccountForm() {
                 <div className='flex gap-2 justify-end'>
                   <Button
                     fullWidth
+                    type='submit'
                     color='primary'>
                     Sign up
                   </Button>
