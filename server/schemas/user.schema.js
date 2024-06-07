@@ -13,7 +13,7 @@ const status = Joi.string();
 const createUserSchema = Joi.object({
   email: email.required(),
   password: password.required(),
-  cellphone: cellphone.required(),
+  cellphone: cellphone,
   avatar: avatar,
   // team: team.required(),
   // role: role.required(),

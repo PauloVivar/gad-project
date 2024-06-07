@@ -29,7 +29,7 @@ const UserSchema = {
     defaultValue: 'customer',
   },
   cellphone: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.STRING,
   },
   phone: {
