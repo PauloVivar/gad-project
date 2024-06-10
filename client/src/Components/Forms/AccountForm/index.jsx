@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useGlobal } from '../../../Context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 
-import { Tabs, Tab, Input, Link, Button, Card, CardBody } from '@nextui-org/react';
+import { Tabs, Tab, Input, Link, Button, Card, CardBody, Code } from '@nextui-org/react';
 
 function AccountForm() {
   //Tab
@@ -11,18 +11,24 @@ function AccountForm() {
   //Form
   const { register, handleSubmit } = useForm();
   //GlobalContext
-  //const { signUp, isAuthenticated, errors } = useGlobal();
-  const { signUp, isAuthenticated } = useGlobal();
+  const { signin, signup, isAuthenticated, errors } = useGlobal();
   const navigate = useNavigate();
 
   useEffect(()=>{
     if(isAuthenticated) navigate('/admin');
   },[isAuthenticated]);
 
-  const onSubmit = handleSubmit(async (values) => {
+  const onSubmitLogin = handleSubmit(async (values) => {
     console.log(values);  //validar el estado
-    signUp(values);
+    signin(values);
   });
+
+  const onSubmitSignup = handleSubmit(async (values) => {
+    console.log(values);  //validar el estado
+    signup(values);
+  });
+
+
 
   return (
     <div className='flex flex-col w-full'>
@@ -37,16 +43,16 @@ function AccountForm() {
             <Tab
               key='login'
               title='Login'>
-              {/* {
-                errors.map((error, i) => {
-                  <Code color="danger" className='p-2' key={i} >
-                    {error}
-                  </Code>
-                })
-              }  */}
+              {
+                // errors.map((error, i) => {
+                //   <Code color="danger" className='p-2' key={i} >
+                //     {error}
+                //   </Code>
+                // })
+              }
               <form
                 className='flex flex-col gap-4'
-                onSubmit={onSubmit}>
+                onSubmit={onSubmitLogin}>
                 <Input
                   isRequired
                   label='Email'
@@ -62,14 +68,6 @@ function AccountForm() {
                   type='password'
                   variant='faded'
                   {...register('password')}
-                />
-                <Input
-                  isRequired
-                  label='Cellphone'
-                  placeholder='Cellphone'
-                  type='text'
-                  variant='faded'
-                  {...register('cellphone')}
                 />
                 <p className='text-center text-small'>
                   ¿Necesitas crear una cuenta?{' '}
@@ -93,17 +91,36 @@ function AccountForm() {
             <Tab
               key='sign-up'
               title='Sign up'>
+              {
+                // <Code color='danger' className={` ${!errors ? 'hidden' : 'visible'} p-2 m-2 `} >
+                //   {errors}
+                // </Code>
+
+                //Object.values(errors)
+                Object.values(errors).map((error, i) => {
+                  <Code color="danger" className='p-2' key={i} >
+                    { console.log(error[0].message)}
+                  </Code>
+                })
+
+                // Object.entries(errors).forEach(([key, value]) => {
+                //     console.log(value[key])
+                //   <Code color="danger" className='p-2 m-2' key={key} >
+                //     {value}
+                //   </Code>
+                // })
+              }
               <form
-                className='flex flex-col gap-4 h-[360px]'
-                onSubmit={onSubmit}>
-                <Input
+                className='flex flex-col gap-4 h-[300px]'
+                onSubmit={onSubmitSignup}>
+                {/* <Input
                   isRequired
                   label='Name'
                   placeholder='Enter your name'
                   type='text'
                   variant='faded'
                   {...register('name')}
-                />
+                /> */}
                 <Input
                   isRequired
                   label='Email'
@@ -122,10 +139,9 @@ function AccountForm() {
                 />
                 <Input
                   isRequired
-                  label='Cellphone'
-                  placeholder='Cellphone'
                   type='text'
-                  variant='faded'
+                  label='Celular'
+                  placeholder='0998888888'
                   {...register('cellphone')}
                 />
                 <p className='text-center text-small'>
@@ -150,6 +166,7 @@ function AccountForm() {
         </CardBody>
       </Card>
     </div>
+   
   );
 }
 export { AccountForm };

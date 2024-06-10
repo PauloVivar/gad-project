@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useFetch } from '../../api/useFetch';
-import { registerRequestUser } from '../../api/users';
+import { registerRequestUser, loginRequestUser } from '../../api/users';
 
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ const GlobalContext = createContext();
 //My custom hook
 const useGlobal = () => {
   const context = useContext(GlobalContext);
-  if(!context){
+  if (!context) {
     throw new Error('useGlobal must be used within an GlobalProvider');
   }
   return context;
@@ -23,20 +23,49 @@ const GlobalProvider = ({ children }) => {
   //User
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [errors, setErrors] = useState('');
+  const [errors, setErrors] = useState({});
 
-  const signUp = async (user) => {
+  //Registrar
+  const signup = async (user) => {
     try {
       const res = await registerRequestUser(user);
       //console.log(res.data);
       setUser(res.data);
       setIsAuthenticated(true);
-
     } catch (error) {
-      console.log(error.data);
+      console.log(error.response);
+      //console.log(error.response.data.errors[0].message);
+      //console.log(error.response.data.message);
+      // if (Array.isArray(error.response.data)) {
+      //   setErrors(error.response.data);
+      // }
       setErrors(error.response.data);
     }
-  } 
+  };
+
+  //Login
+  const signin = async (user) => {
+    try {
+      const res = await loginRequestUser(user);
+      console.log(res);
+    } catch (error) {
+      //console.log(error.response.data);
+      if (Array.isArray(error.response.data)) {
+        setErrors(error.response.data);
+      }
+      setErrors(error.response.data);
+    }
+  };
+
+  //Eliminar alert errors despues de 5s
+  useEffect(() => {
+    if (errors.length > 0) {
+      const timer = setTimeout(() => {
+        setErrors([]);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errors]);
 
   //My account
   const [account, setAccount] = useState({});
@@ -94,7 +123,8 @@ const GlobalProvider = ({ children }) => {
       value={{
         user,
         setUser,
-        signUp,
+        signup,
+        signin,
         isAuthenticated,
         errors,
 
@@ -115,7 +145,6 @@ const GlobalProvider = ({ children }) => {
         //addCustomer,
         //updateCustomer,
         //deleteCustomer
-
       }}>
       {children}
     </GlobalContext.Provider>
