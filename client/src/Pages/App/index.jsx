@@ -42,15 +42,7 @@ const AppRoutes = () => {
     // { path: '/', element: <Home /> },
     {
       path: '/',
-      element:
-        hasUserAnAccount && !isUserSignOut ? (
-          <Home />
-        ) : (
-          <Navigate
-            replace
-            to={'/sign-in'}
-          />
-        ),
+      element: hasUserAnAccount && !isUserSignOut ? (<Home />) : (<Navigate replace to={'/sign-in'}/>),
     },
     { path: '/news', element: <News /> },
     { path: '/connected', element: <Connected />,
